@@ -139,7 +139,3 @@ Deliverables
     Documentation: Detailed project documentation, including design decisions, installation guide, and user manual.
     Executable: Precompiled binaries for different platforms (optional).
     Demo: A live or recorded demo showcasing the system's capabilities.
-
-Potential Impact
-
-By showcasing this project, you will demonstrate your ability to design and implement a complex, real-world trading system in C++. This will highlight your skills in C++ programming, real-time data processing, algorithmic trading, and financial technology, making you a strong candidate for software engineering or quant developer roles at top hedge funds.

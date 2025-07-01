@@ -1,133 +1,168 @@
-Project Title: Real-Time Market Data Analysis and Automated Trading System
+# Real-Time Market Data Feed Handler & Order Matching Engine
 
-Objective:
-Develop a high-performance, real-time market data analysis and trading system using C++. The system will process live market data, apply quantitative trading strategies, and execute trades with minimal latency. The project will demonstrate skills in C++ programming, financial data processing, algorithmic trading, and real-time system development.
-Detailed Project Outline
-1. System Architecture
+## Description
 
-Components:
+This project implements a **real-time market data feed handler** and an **order matching engine**, designed to mimic the core functionality of a financial trading system. It is built in **modern C++** (C++20) and uses external libraries like **libcurl** for network communication and **JSON for Modern C++** (`json.hpp`) for handling market data in JSON format.
 
-    Market Data Feed Handler: Connects to market data providers (e.g., stock exchanges, financial data APIs) to receive real-time market data.
-    Data Processing Engine: Processes incoming market data, updates internal state, and computes necessary indicators.
-    Trading Strategy Module: Implements one or more trading algorithms that generate buy/sell signals based on processed data.
-    Order Execution Engine: Interfaces with a simulated or real trading platform to place, modify, and cancel orders.
-    Risk Management Module: Monitors positions and risk metrics to ensure compliance with predefined risk parameters.
-    Dashboard Interface: Provides a graphical user interface (GUI) to monitor system performance, view trading signals, and manage settings.
+The system is designed with the following goals in mind:
+- Efficiently process real-time market data from external APIs.
+- Provide a robust order matching engine that can handle high-frequency trading (HFT) scenarios.
+- Ensure modularity and scalability, allowing the system to be extended with new features, such as different order types and market instruments.
+- Provide performance benchmarks and unit tests to ensure correctness and efficiency.
 
-2. Market Data Feed Handler
+This project simulates a real-world trading environment and is ideal for developers looking to gain practical experience in financial systems, networking, and high-performance C++ development.
 
-Tasks:
+---
 
-    Establish a connection to a market data provider.
-    Parse and process incoming data (e.g., price quotes, trade executions).
-    Maintain an in-memory order book and time-series data structure for historical analysis.
+## Features
 
-Technologies:
+- **Order Matching Engine**: Supports different order types (limit, market, etc.) and matches buy/sell orders based on price and time priority.
+- **Real-Time Market Data Handling**: Fetches and processes real-time market data streams using `libcurl` and `json.hpp`.
+- **Networking**: Implements client-server communication for interacting with market data feeds and potentially other external systems.
+- **High-Performance**: Designed for performance with an emphasis on low-latency order matching and data processing.
+- **Unit Testing**: Includes comprehensive unit tests to validate core functionality.
+- **Benchmarking**: Performance benchmarks for key system components such as the order matching engine and market data handler.
 
-    Network programming (Boost.Asio)
-    JSON/XML parsing (RapidJSON/tinyxml2)
-    Multithreading (std::thread, Boost.Thread)
+---
 
-3. Data Processing Engine
+## Folder Structure
 
-Tasks:
+```bash
+.
+├── CMakeLists.txt
+├── include/
+│   ├── order_matching/
+│   ├── market_data/
+│   ├── networking/
+│   └── utils/
+├── src/
+│   ├── order_matching/
+│   ├── market_data/
+│   ├── networking/
+│   └── utils/
+├── tests/
+├── third_party/
+├── benchmarks/
+├── cmake/
+└── README.md
+```
 
-    Implement real-time data processing pipelines.
-    Calculate technical indicators (e.g., moving averages, RSI, MACD).
-    Update stateful market data structures for efficient query and analysis.
+### Folder Overview
 
-Technologies:
+- **`include/`**: Contains header files for different modules (`order_matching`, `market_data`, `networking`, and `utils`).
+- **`src/`**: Contains the source code for the system implementation, organized into functional modules.
+- **`tests/`**: Unit tests for each module to ensure the system works as expected.
+- **`benchmarks/`**: Contains performance benchmarks for critical components.
+- **`third_party/`**: External libraries such as `curl` and `json.hpp` are integrated here.
 
-    In-memory data structures (std::vector, std::deque)
-    Mathematical computations (Eigen, Boost.Math)
+---
 
-4. Trading Strategy Module
+## Getting Started
 
-Tasks:
+### Prerequisites
 
-    Develop and implement quantitative trading strategies (e.g., mean reversion, momentum trading).
-    Backtest strategies using historical data to validate performance.
-    Optimize strategy parameters using machine learning techniques (optional).
+- **CMake** (version 3.10 or higher)
+- **C++20** compatible compiler (e.g., GCC, Clang, MSVC)
+- **libcurl** (for handling HTTP requests)
+- **JSON for Modern C++** (`json.hpp`)
 
-Technologies:
+### Building the Project
 
-    Algorithm development (custom C++ code)
-    Backtesting frameworks (custom implementation)
-    Optional: Machine learning (dlib, TensorFlow C++ API)
+1. Clone the repository:
 
-5. Order Execution Engine
+   ```bash
+   git clone https://github.com/yourusername/market-data-order-matching-engine.git
+   cd market-data-order-matching-engine
+   ```
 
-Tasks:
+2. Create a build directory:
 
-    Interface with trading APIs (e.g., Interactive Brokers, Alpaca) to send and manage orders.
-    Implement order types (market, limit, stop) and execution logic.
-    Ensure low-latency order processing and robust error handling.
+   ```bash
+   mkdir build && cd build
+   ```
 
-Technologies:
+3. Run CMake to configure the project:
 
-    API integration (REST APIs, FIX protocol)
-    Low-latency programming (optimizing network and I/O operations)
+   ```bash
+   cmake ..
+   ```
 
-6. Risk Management Module
+4. Build the project:
 
-Tasks:
+   ```bash
+   make
+   ```
 
-    Monitor real-time positions, P&L, and risk metrics (e.g., VaR, max drawdown).
-    Implement risk limits and automated safeguards (e.g., stop-loss orders).
-    Provide real-time alerts and logging for risk events.
+5. Run the executable:
 
-Technologies:
+   ```bash
+   ./MarketDataEngine
+   ```
 
-    Risk calculations (custom C++ code)
-    Logging and alerts (Boost.Log, email/SMS integration)
+### Running Unit Tests
 
-7. Dashboard Interface
+The project includes unit tests written using a testing framework (e.g., Google Test or Catch2). To run the tests:
 
-Tasks:
+```bash
+make test
+```
 
-    Develop a GUI to visualize market data, trading signals, and system performance.
-    Provide interactive controls for strategy parameters and risk settings.
-    Display real-time metrics and alerts.
+### Running Benchmarks
 
-Technologies:
+To benchmark the system’s performance:
 
-    GUI development (Qt, wxWidgets)
-    Data visualization (QCustomPlot, matplotlib-cpp)
+```bash
+./benchmarks/BenchmarkOrderMatching
+./benchmarks/BenchmarkMarketData
+```
 
-Implementation Plan
+---
 
-    Project Setup:
-        Create a GitHub repository for the project.
-        Set up the project structure with CMake build system.
-        Define initial classes and interfaces for the main components.
+## Usage
 
-    Market Data Feed Handler:
-        Implement network connection and data parsing logic.
-        Test with sample market data feeds.
+### Order Matching Engine
 
-    Data Processing Engine:
-        Develop data processing pipelines and technical indicator calculations.
-        Integrate with market data feed handler for real-time updates.
+The order matching engine takes buy and sell orders, processes them in real-time, and matches them based on price and time priority. You can configure the engine with various order types (market, limit) and simulate trading activity using predefined order books.
 
-    Trading Strategy Module:
-        Implement initial trading strategies and backtesting framework.
-        Optimize and validate strategies using historical data.
+### Market Data Handler
 
-    Order Execution Engine:
-        Develop order management and execution logic.
-        Interface with a trading API and simulate order execution.
+The market data handler fetches and processes live data streams from external APIs using `libcurl`. Data is parsed from JSON format using `json.hpp` and passed to the order matching engine to inform trading decisions.
 
-    Risk Management Module:
-        Implement real-time risk monitoring and alerting mechanisms.
-        Integrate with trading strategy and order execution modules.
+---
 
-    Dashboard Interface:
-        Develop GUI for monitoring and control.
-        Integrate real-time data and controls for strategy and risk management.
+## Project Goals
 
-    Testing and Optimization:
-        Conduct extensive testing for performance, accuracy, and robustness.
-        Optimize code for low latency and high throughput.
-
+1. **Real-World Financial System Simulation**: The project simulates a real-world financial trading system, allowing developers to experience the challenges of high-frequency trading, real-time market data handling, and system performance optimization.
    
+2. **Learning Modern C++**: This project is a great way to apply modern C++ features (C++20), including advanced data structures, concurrency, and performance optimizations.
 
+3. **Performance & Scalability**: Designed to handle high-frequency trading scenarios, the system is built for performance, with an emphasis on low-latency data processing and order matching.
+
+---
+
+## Contributing
+
+Contributions are welcome! Feel free to submit pull requests for new features, optimizations, or bug fixes. Please make sure that all new code includes unit tests and follows the existing coding style.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/YourFeature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin feature/YourFeature`)
+5. Create a new Pull Request
+
+---
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+## Contact
+
+For any inquiries or further information, please contact:
+
+- **Author**: Ömer Halit Cinar
+- **Email**: omerhalidcinar@gmail.com
+
+Feel free to reach out with questions, feedback, or ideas for future improvements!

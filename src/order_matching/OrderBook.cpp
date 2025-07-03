@@ -1,4 +1,5 @@
 #include "../include/order_matching/OrderBook.hpp"
+#include "../include/order_matching/Order.hpp"
 
 template<typename Compare>
 void OrderBook::removeFromHeap(std::priority_queue<OrderDouble, std::vector<OrderDouble>, Compare> &heap, int id)
@@ -57,7 +58,7 @@ void OrderBook::modifyOrder(const int& id, const double& newPrice, const int& ne
 {
     if (orderMap.find(id) != orderMap.end())
     {
-        Order oldOrder = orderMap[id];
+        Order<double> oldOrder = orderMap[id];
         orderMap.erase(id);
         if (oldOrder.isBuyOrder)
         {

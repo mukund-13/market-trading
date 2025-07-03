@@ -1,6 +1,6 @@
 #include <iostream>
 #include "include/networking/Client.hpp"
-#include "../include/market_data/MarketDataHandler.hpp
+#include "../include/market_data/MarketDataHandler.hpp"
 
 // Fetch and process market data using the Client class
 void MarketDataHandler::updateMarketData(const std::string& symbol) {
